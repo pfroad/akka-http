@@ -10,7 +10,8 @@ class DatabaseService(jdbcUrl: String, dbUser: String, dbPassword: String) {
 
   private val dataSource = new HikariDataSource(hikariConfig)
 
-  val driver = slick.driver.PostgresDriver
+  val driver = slick.driver.MySQLDriver //.PostgresDriver
+//  val driver = com.mysql.jdbc.Driver
   import driver.api._
   val db = Database.forDataSource(dataSource)
   db.createSession()

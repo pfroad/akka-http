@@ -17,7 +17,7 @@ object Main extends App with Config {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   val flywayService = new FlywayService(jdbcUrl, dbUser, dbPassword)
-  flywayService.migrateDatabaseSchema
+//  flywayService.migrateDatabaseSchema
 
   val databaseService = new DatabaseService(jdbcUrl, dbUser, dbPassword)
 
@@ -27,4 +27,6 @@ object Main extends App with Config {
   val httpService = new HttpService(usersService, authService)
 
   Http().bindAndHandle(httpService.routes, httpHost, httpPort)
+
+  log.info("akka server has been started")
 }
